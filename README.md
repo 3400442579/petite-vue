@@ -5,7 +5,7 @@
 - Only ~6kb
 - Vue-compatible template syntax
 - DOM-based, mutates in place
-- Driven by `@vue/reactivity`
+- Driven by `#vue/reactivity`
 
 ## Status
 
@@ -25,7 +25,7 @@
 <!-- anywhere on the page -->
 <div v-scope="{ count: 0 }">
   {{ count }}
-  <button @click="count++">inc</button>
+  <button #click="count++">inc</button>
 </div>
 ```
 
@@ -57,9 +57,9 @@ Or, use the ES module build:
 
 The short CDN URL is meant for prototyping. For production usage, use a fully resolved CDN URL to avoid resolving and redirect cost:
 
-- Global build: `https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.iife.js`
+- Global build: `https://unpkg.com/petite-vue#0.2.2/dist/petite-vue.iife.js`
   - exposes `PetiteVue` global, supports auto init
-- ESM build: `https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js`
+- ESM build: `https://unpkg.com/petite-vue#0.2.2/dist/petite-vue.es.js`
   - Must be used with `<script type="module">`
 
 ### Root Scope
@@ -88,7 +88,7 @@ The `createApp` function accepts a data object that serves as the root scope for
 <div v-scope>
   <p>{{ count }}</p>
   <p>{{ plusOne }}</p>
-  <button @click="increment">increment</button>
+  <button #click="increment">increment</button>
 </div>
 ```
 
@@ -121,8 +121,8 @@ You can listen to the special `vue:mounted` and `vue:unmounted` lifecycle events
 ```html
 <div
   v-if="show"
-  @vue:mounted="console.log('mounted on: ', $el)"
-  @vue:unmounted="console.log('unmounted: ', $el)"
+  #vue:mounted="console.log('mounted on: ', $el)"
+  #vue:unmounted="console.log('unmounted: ', $el)"
 ></div>
 ```
 
@@ -133,7 +133,7 @@ Use `v-effect` to execute **reactive** inline statements:
 ```html
 <div v-scope="{ count: 0 }">
   <div v-effect="$el.textContent = count"></div>
-  <button @click="count++">++</button>
+  <button #click="count++">++</button>
 </div>
 ```
 
@@ -172,14 +172,14 @@ First, reusable scope logic can be created with functions:
   }).mount()
 </script>
 
-<div v-scope="Counter({ initialCount: 1 })" @vue:mounted="mounted">
+<div v-scope="Counter({ initialCount: 1 })" #vue:mounted="mounted">
   <p>{{ count }}</p>
-  <button @click="inc">increment</button>
+  <button #click="inc">increment</button>
 </div>
 
 <div v-scope="Counter({ initialCount: 2 })">
   <p>{{ count }}</p>
-  <button @click="inc">increment</button>
+  <button #click="inc">increment</button>
 </div>
 ```
 
@@ -208,7 +208,7 @@ If you also want to reuse a piece of template, you can provide a special `$templ
 
 <template id="counter-template">
   My count is {{ count }}
-  <button @click="inc">++</button>
+  <button #click="inc">++</button>
 </template>
 
 <!-- reuse it -->
@@ -220,7 +220,7 @@ The `<template>` approach is recommended over inline strings because it is more 
 
 ### Global State Management
 
-You can use the `reactive` method (re-exported from `@vue/reactivity`) to create global state singletons:
+You can use the `reactive` method (re-exported from `#vue/reactivity`) to create global state singletons:
 
 ```html
 <script type="module">
@@ -244,10 +244,10 @@ You can use the `reactive` method (re-exported from `@vue/reactivity`) to create
 
 <div v-scope="{ localCount: 0 }">
   <p>Global {{ store.count }}</p>
-  <button @click="store.inc">increment</button>
+  <button #click="store.inc">increment</button>
 
   <p>Local {{ localCount }}</p>
-  <button @click="localCount++">increment</button>
+  <button #click="localCount++">increment</button>
 </div>
 ```
 
@@ -316,7 +316,7 @@ Check out the [examples directory](https://github.com/vuejs/petite-vue/tree/main
 
 - `v-scope`
 - `v-effect`
-- `@vue:mounted` & `@vue:unmounted` events
+- `#vue:mounted` & `#vue:unmounted` events
 
 ### Has Different Behavior
 
@@ -329,7 +329,7 @@ Check out the [examples directory](https://github.com/vuejs/petite-vue/tree/main
 
 - `{{ }}` text bindings (configurable with custom delimiters)
 - `v-bind` (including `:` shorthand and class/style special handling)
-- `v-on` (including `@` shorthand and all modifiers)
+- `v-on` (including `#` shorthand and all modifiers)
 - `v-model` (all input types + non-string `:value` bindings)
 - `v-if` / `v-else` / `v-else-if`
 - `v-for`

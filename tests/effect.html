@@ -5,5 +5,5 @@
 
 <div v-scope="{ count: 0 }">
   <div v-effect="$el.textContent = count"></div>
-  <button @click="count++">++</button>
+  <button #click="count++">++</button>
 </div>

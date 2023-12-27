@@ -9,7 +9,7 @@ import { checkAttr } from './utils'
 import { ref } from './directives/ref'
 import { Context, createScopedContext } from './context'
 
-const dirRE = /^(?:v-|:|@)/
+const dirRE = /^(?:v-|:|#)/
 const modifierRE = /\.([\w-]+)/g
 
 export let inOnce = false
@@ -68,7 +68,7 @@ export const walk = (node: Node, ctx: Context): ChildNode | null | void => {
           // defer v-model since it relies on :value bindings to be processed
           // first, but also before v-on listeners (#73)
           deferred.unshift([name, value])
-        } else if (name[0] === '@' || /^v-on\b/.test(name)) {
+        } else if (name[0] === '#' || /^v-on\b/.test(name)) {
           deferred.push([name, value])
         } else {
           processDirective(el, name, value, ctx)
@@ -131,7 +131,7 @@ const processDirective = (
   if (raw[0] === ':') {
     dir = bind
     arg = raw.slice(1)
-  } else if (raw[0] === '@') {
+  } else if (raw[0] === '#') {
     dir = on
     arg = raw.slice(1)
   } else {

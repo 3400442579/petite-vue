@@ -1,6 +1,6 @@
 <link
   rel="stylesheet"
-  href="https://unpkg.com/todomvc-app-css@2.4.1/index.css"
+  href="https://unpkg.com/todomvc-app-css#2.4.1/index.css"
 />
 <style>
   [v-cloak] {
@@ -132,7 +132,7 @@
   }).mount('#app')
 </script>
 
-<div id="app" @mounted="setupRouting" v-effect="save()" v-cloak>
+<div id="app" #mounted="setupRouting" v-effect="save()" v-cloak>
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
@@ -142,7 +142,7 @@
         autocomplete="off"
         placeholder="What needs to be done?"
         v-model="newTodo"
-        @keyup.enter="addTodo"
+        #keyup.enter="addTodo"
       />
     </header>
     <section class="main" v-show="todos.length">
@@ -162,17 +162,17 @@
         >
           <div class="view">
             <input class="toggle" type="checkbox" v-model="todo.completed" />
-            <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
-            <button class="destroy" @click="removeTodo(todo)"></button>
+            <label #dblclick="editTodo(todo)">{{ todo.title }}</label>
+            <button class="destroy" #click="removeTodo(todo)"></button>
           </div>
           <input
             class="edit"
             type="text"
             v-model="todo.title"
             v-effect="if (todo === editedTodo) $el.focus()"
-            @blur="doneEdit(todo)"
-            @keyup.enter="doneEdit(todo)"
-            @keyup.escape="cancelEdit(todo)"
+            #blur="doneEdit(todo)"
+            #keyup.enter="doneEdit(todo)"
+            #keyup.escape="cancelEdit(todo)"
           />
         </li>
       </ul>
@@ -201,7 +201,7 @@
       </ul>
       <button
         class="clear-completed"
-        @click="removeCompleted"
+        #click="removeCompleted"
         v-show="todos.length > remaining"
       >
         Clear completed

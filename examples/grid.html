@@ -56,7 +56,7 @@
       <tr>
         <th
           v-for="key in columns"
-          @click="sortBy(key)"
+          #click="sortBy(key)"
           :class="{ active: sortKey == key }"
         >
           {{ capitalize(key) }}

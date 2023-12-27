@@ -59,13 +59,13 @@
 </script>
 
 <template id="item-template">
-  <div :class="{ bold: isFolder }" @click="toggle" @dblclick="changeType">
+  <div :class="{ bold: isFolder }" #click="toggle" #dblclick="changeType">
     <span>{{ model.name }}</span>
     <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
   </div>
   <ul v-show="open" v-if="isFolder">
     <li v-for="model in model.children" v-scope="TreeItem(model)"></li>
-    <li class="add" @click="addChild">+</li>
+    <li class="add" #click="addChild">+</li>
   </ul>
 </template>
 

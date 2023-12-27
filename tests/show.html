@@ -5,6 +5,6 @@
 </script>
 
 <div id="app" v-scope="{ open: true }">
-  <button @click="open = !open">toggle</button>
+  <button #click="open = !open">toggle</button>
   <div v-show="open">ok</div>
 </div>

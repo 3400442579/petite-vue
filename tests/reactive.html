@@ -19,8 +19,8 @@
 
 <div v-scope="{ localCount: 0 }">
   <p>Global {{ store.count }}</p>
-  <button @click="store.inc">increment</button>
+  <button #click="store.inc">increment</button>
 
   <p>Local {{ localCount }}</p>
-  <button @click="localCount++">increment</button>
+  <button #click="localCount++">increment</button>
 </div>

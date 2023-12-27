@@ -19,10 +19,10 @@
 </script>
 
 <div id="app">
-  <button @click="add">add</button>
-  <button @click="list.reverse()">reverse</button>
-  <button @click="list.pop()">pop</button>
-  <button @click="splice">splice</button>
+  <button #click="add">add</button>
+  <button #click="list.reverse()">reverse</button>
+  <button #click="list.pop()">pop</button>
+  <button #click="splice">splice</button>
   <ul>
     <li v-for="({ id, text }, index) in list" :key="id">
       <div>{{ index }} {{ { id, text } }}</div>
